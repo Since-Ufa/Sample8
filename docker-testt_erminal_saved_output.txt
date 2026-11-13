@@ -1,0 +1,76 @@
+
+~/Desktop/docker main*
+❯ docker ps -a                    
+CONTAINER ID   IMAGE     COMMAND         CREATED              STATUS                     PORTS     NAMES
+4a3c8748c8b7   alpine    "sleep 86400"   About a minute ago   Up About a minute                    optimistic_ptolemy
+cc9474b7e0a4   alpine    "/bin/sh"       3 minutes ago        Exited (0) 3 minutes ago             silly_feistel
+
+~/Desktop/docker main*
+❯ docker exec -it 4a3c8748c8b7 bash
+OCI runtime exec failed: exec failed: unable to start container process: exec: "bash": executable file not found in $PATH
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug 4a3c8748c8b7
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+~/Desktop/docker main*
+❯ docker exec -it 4a3c8748c8b7 sh  
+/ # ls
+bin    etc    lib    mnt    proc   run    srv    tmp    var
+dev    home   media  opt    root   sbin   sys    usr
+/ # l
+sh: l: not found
+/ # la
+sh: la: not found
+/ # ll
+sh: ll: not found
+/ # uname -r
+7.0.14-linuxkit
+/ # ls -la
+total 64
+drwxr-xr-x    1 root     root          4096 Nov 13 09:20 .
+drwxr-xr-x    1 root     root          4096 Nov 13 09:20 ..
+-rwxr-xr-x    1 root     root             0 Nov 13 09:20 .dockerenv
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 bin
+drwxr-xr-x    5 root     root           340 Nov 13 09:20 dev
+drwxr-xr-x    1 root     root          4096 Nov 13 09:20 etc
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 home
+drwxr-xr-x    6 root     root          4096 Nov  5 09:19 lib
+drwxr-xr-x    5 root     root          4096 Nov  5 09:19 media
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 mnt
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 opt
+dr-xr-xr-x  195 root     root             0 Nov 13 09:20 proc
+drwx------    1 root     root          4096 Nov 13 09:22 root
+drwxr-xr-x    3 root     root          4096 Nov  5 09:19 run
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 sbin
+drwxr-xr-x    2 root     root          4096 Nov  5 09:19 srv
+dr-xr-xr-x   11 root     root             0 Nov 13 09:20 sys
+drwxrwxrwt    2 root     root          4096 Nov  5 09:19 tmp
+drwxr-xr-x    7 root     root          4096 Nov  5 09:19 usr
+drwxr-xr-x   11 root     root          4096 Nov  5 09:19 var
+/ # 
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug 4a3c8748c8b7
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+~/Desktop/docker main* 1m 29s
+❯ docker ps -a                     
+CONTAINER ID   IMAGE     COMMAND         CREATED         STATUS                     PORTS     NAMES
+4a3c8748c8b7   alpine    "sleep 86400"   4 minutes ago   Up 4 minutes                         optimistic_ptolemy
+cc9474b7e0a4   alpine    "/bin/sh"       5 minutes ago   Exited (0) 5 minutes ago             silly_feistel
+
+~/Desktop/docker main*
+❯ docker rm -f 4a3c8748c8b7
+4a3c8748c8b7
+
+~/Desktop/docker main*
+❯ docker rm -f cc9474b7e0a4
+cc9474b7e0a4
+
+~/Desktop/docker main*
+❯ docker ps -a             
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+~/Desktop/docker main*
+❯ 
