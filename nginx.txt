@@ -1,0 +1,96 @@
+~/Desktop
+❯ mkdir nginx-test
+
+~/Desktop
+❯ cd nginx-test/
+
+~/Desktop/nginx-test
+❯ mkdir ntml
+
+~/Desktop/nginx-test
+❯ rmdir ntml 
+
+~/Desktop/nginx-test
+❯ mkdir html
+
+~/Desktop/nginx-test
+❯ nano html/index.html
+
+~/Desktop/nginx-test
+❯ uv init
+Initialized project `nginx-test`
+
+~/Desktop/nginx-test main*
+❯ mkdir conf
+
+~/Desktop/nginx-test main*
+❯ nano conf/default.conf
+
+~/Desktop/nginx-test main*
+❯ docker volume create nginx-logs
+nginx-logs
+
+~/Desktop/nginx-test main*
+❯ docker volumes ls              
+docker: unknown command: docker volumes
+
+Run 'docker --help' for more information
+
+~/Desktop/nginx-test main*
+❯ docker volume ls 
+DRIVER    VOLUME NAME
+local     nginx-logs
+
+~/Desktop/nginx-test main*
+❯ docker run -d \
+  --name web \
+  -p 8080:80 \
+  -v ./html:/usr/share/nginx/html:ro \
+  -v ./conf/default.conf:/etc/nginx/conf.d/default.conf:ro \
+  -v nginx-logs:/var/log/nginx \
+  nginx:latest
+
+ea9334555a724fbc1bfa5910b5aaebfe8754f06f9ba1833b337ffcceab84e6ae
+
+~/Desktop/nginx-test main*
+❯ docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                                     NAMES
+ea9334555a72   nginx:latest   "/docker-entrypoint.…"   8 seconds ago   Up 4 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   web
+
+~/Desktop/nginx-test main*
+❯ curl localhost:8080
+<!DOCTYPE html>
+<html>
+  <head><meta charset="utf-8"><title>Nginx demo</title></head>
+  <body><h1>Привет из nginx в контейнере!</h1></body>
+</html>
+
+~/Desktop/nginx-test main*
+❯ docker rm -f ea9334555a72
+ea9334555a72
+
+~/Desktop/nginx-test main*
+❯ docker ps -a             
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+~/Desktop/nginx-test main*
+❯ docker run -d \          
+  --name web \
+  -p 8080:80 \
+  -v ./html:/usr/share/nginx/html:ro \
+  -v ./conf/default.conf:/etc/nginx/conf.d/default.conf:ro \
+  -v nginx-logs:/var/log/nginx \
+  nginx:latest
+
+2e16f78b19a8966b058bdebf553704698899a78ec6b3dad916cdfe2023ec80de
+
+~/Desktop/nginx-test main*
+❯ curl localhost:8080      
+<!DOCTYPE html>
+<html>
+  <head><meta charset="utf-8"><title>Nginx demo</title></head>
+  <body><h1>Привет из nginx в контейнере!</h1></body>
+</html>
+
+~/Desktop/nginx-test main*
+❯     
